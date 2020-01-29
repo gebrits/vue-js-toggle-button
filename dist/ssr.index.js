@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -82,13 +82,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 /* styles */
-__webpack_require__(6)
+__webpack_require__(8)
 
-var Component = __webpack_require__(4)(
+var Component = __webpack_require__(6)(
   /* script */
   __webpack_require__(1),
   /* template */
-  __webpack_require__(5),
+  __webpack_require__(7),
   /* scopeId */
   "data-v-25adc6c0",
   /* cssModules */
@@ -104,7 +104,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(3);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 //
 //
 //
@@ -150,11 +152,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-const DEFAULT_COLOR_CHECKED = '#75c791';
-const DEFAULT_COLOR_UNCHECKED = '#bfcbd9';
-const DEFAULT_LABEL_CHECKED = 'on';
-const DEFAULT_LABEL_UNCHECKED = 'off';
-const DEFAULT_SWITCH_COLOR = '#fff';
+var DEFAULT_COLOR_CHECKED = '#75c791';
+var DEFAULT_COLOR_UNCHECKED = '#bfcbd9';
+var DEFAULT_LABEL_CHECKED = 'on';
+var DEFAULT_LABEL_UNCHECKED = 'off';
+var DEFAULT_SWITCH_COLOR = '#fff';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'ToggleButton',
@@ -183,13 +185,13 @@ const DEFAULT_SWITCH_COLOR = '#fff';
     },
     color: {
       type: [String, Object],
-      validator(value) {
+      validator: function validator(value) {
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* isString */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'checked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'unchecked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'disabled');
       }
     },
     switchColor: {
       type: [String, Object],
-      validator(value) {
+      validator: function validator(value) {
         return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* isString */])(value) || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'checked') || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* has */])(value, 'unchecked');
       }
     },
@@ -200,8 +202,8 @@ const DEFAULT_SWITCH_COLOR = '#fff';
     labels: {
       type: [Boolean, Object],
       default: false,
-      validator(value) {
-        return typeof value === 'object' ? value.checked || value.unchecked : typeof value === 'boolean';
+      validator: function validator(value) {
+        return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object' ? value.checked || value.unchecked : typeof value === 'boolean';
       }
     },
     height: {
@@ -221,16 +223,17 @@ const DEFAULT_SWITCH_COLOR = '#fff';
     }
   },
   computed: {
-    className() {
-      let { toggled, disabled } = this;
+    className: function className() {
+      var toggled = this.toggled,
+          disabled = this.disabled;
+
 
       return ['vue-js-switch', {
-        toggled,
-        disabled
+        toggled: toggled,
+        disabled: disabled
       }];
     },
-
-    coreStyle() {
+    coreStyle: function coreStyle() {
       return {
         width: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.width),
         height: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.height),
@@ -238,41 +241,37 @@ const DEFAULT_SWITCH_COLOR = '#fff';
         borderRadius: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(Math.round(this.height / 2))
       };
     },
-
-    buttonRadius() {
+    buttonRadius: function buttonRadius() {
       return this.height - this.margin * 2;
     },
-
-    distance() {
+    distance: function distance() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.width - this.height + this.margin);
     },
+    buttonStyle: function buttonStyle() {
+      var transition = 'transform ' + this.speed + 'ms';
+      var margin = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.margin);
 
-    buttonStyle() {
-      const transition = `transform ${this.speed}ms`;
-      const margin = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.margin);
+      var transform = this.toggled ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate */])(this.distance, margin) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate */])(margin, margin);
 
-      const transform = this.toggled ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate */])(this.distance, margin) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* translate */])(margin, margin);
-
-      const background = this.switchColor ? this.switchColorCurrent : null;
+      var background = this.switchColor ? this.switchColorCurrent : null;
 
       return {
         width: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.buttonRadius),
         height: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.buttonRadius),
-        transition,
-        transform,
-        background
+        transition: transition,
+        transform: transform,
+        background: background
       };
     },
-
-    labelStyle() {
+    labelStyle: function labelStyle() {
       return {
         lineHeight: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.height),
         fontSize: this.fontSize ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* px */])(this.fontSize) : null
       };
     },
+    colorChecked: function colorChecked() {
+      var color = this.color;
 
-    colorChecked() {
-      let { color } = this;
 
       if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* isObject */])(color)) {
         return color || DEFAULT_COLOR_CHECKED;
@@ -280,37 +279,30 @@ const DEFAULT_SWITCH_COLOR = '#fff';
 
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(color, 'checked', DEFAULT_COLOR_CHECKED);
     },
-
-    colorUnchecked() {
+    colorUnchecked: function colorUnchecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.color, 'unchecked', DEFAULT_COLOR_UNCHECKED);
     },
-
-    colorDisabled() {
+    colorDisabled: function colorDisabled() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.color, 'disabled', this.colorCurrent);
     },
-
-    colorCurrent() {
+    colorCurrent: function colorCurrent() {
       return this.toggled ? this.colorChecked : this.colorUnchecked;
     },
-
-    labelChecked() {
+    labelChecked: function labelChecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.labels, 'checked', DEFAULT_LABEL_CHECKED);
     },
-
-    labelUnchecked() {
+    labelUnchecked: function labelUnchecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.labels, 'unchecked', DEFAULT_LABEL_UNCHECKED);
     },
-
-    switchColorChecked() {
+    switchColorChecked: function switchColorChecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.switchColor, 'checked', DEFAULT_SWITCH_COLOR);
     },
-
-    switchColorUnchecked() {
+    switchColorUnchecked: function switchColorUnchecked() {
       return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* get */])(this.switchColor, 'unchecked', DEFAULT_SWITCH_COLOR);
     },
+    switchColorCurrent: function switchColorCurrent() {
+      var switchColor = this.switchColor;
 
-    switchColorCurrent() {
-      let { switchColor } = this;
 
       if (!__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* isObject */])(this.switchColor)) {
         return this.switchColor || DEFAULT_SWITCH_COLOR;
@@ -318,23 +310,23 @@ const DEFAULT_SWITCH_COLOR = '#fff';
 
       return this.toggled ? this.switchColorChecked : this.switchColorUnchecked;
     }
-
   },
   watch: {
-    value(value) {
+    value: function value(_value) {
       if (this.sync) {
-        this.toggled = !!value;
+        this.toggled = !!_value;
       }
     }
   },
-  data() {
+  data: function data() {
     return {
       toggled: !!this.value
     };
   },
+
   methods: {
-    toggle(event) {
-      const toggled = !this.toggled;
+    toggle: function toggle(event) {
+      var toggled = !this.toggled;
 
       if (!this.sync) {
         this.toggled = toggled;
@@ -352,9 +344,77 @@ const DEFAULT_SWITCH_COLOR = '#fff';
 
 /***/ }),
 /* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Button_vue__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "ToggleButton", function() { return __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a; });
+
+
+var installed = false;
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  install: function install(Vue) {
+    if (installed) {
+      return;
+    }
+
+    Vue.component('ToggleButton', __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a);
+    installed = true;
+  }
+});
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return isString; });
+/* unused harmony export isBoolean */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return isObject; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return has; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return get; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return px; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return translate; });
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var isString = function isString(value) {
+  return typeof value === 'string';
+};
+
+var isBoolean = function isBoolean(value) {
+  return typeof value === 'boolean';
+};
+
+var isObject = function isObject(value) {
+  return (typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object';
+};
+
+var has = function has(object, key) {
+  return isObject(object) && object.hasOwnProperty(key);
+};
+
+var get = function get(object, key, defaultValue) {
+  return has(object, key) ? object[key] : defaultValue;
+};
+
+var px = function px(value) {
+  return value + 'px';
+};
+
+var translate = function translate(x, y) {
+  return 'translate(' + x + ', ' + y + ')';
+};
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)();
+exports = module.exports = __webpack_require__(5)();
 // imports
 
 
@@ -365,7 +425,7 @@ exports.push([module.i, ".vue-js-switch[data-v-25adc6c0]{display:inline-block;po
 
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports) {
 
 /*
@@ -421,7 +481,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // this module is a runtime utility for cleaner component module output and will
@@ -478,7 +538,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -520,23 +580,23 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: []}
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(2);
+var content = __webpack_require__(4);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add CSS to SSR context
-__webpack_require__(7)("2283861f", content, true);
+__webpack_require__(9)("2283861f", content, true);
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var listToStyles = __webpack_require__(8)
+var listToStyles = __webpack_require__(10)
 
 module.exports = function (parentId, list, isProduction) {
   if (typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
@@ -618,7 +678,7 @@ function renderStyles (styles) {
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /**
@@ -648,80 +708,6 @@ module.exports = function listToStyles (parentId, list) {
   }
   return styles
 }
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Button_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Button_vue__);
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "ToggleButton", function() { return __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a; });
-
-
-let installed = false
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  install(Vue) {
-    if (installed) {
-      return
-    }
-    
-    Vue.component('ToggleButton', __WEBPACK_IMPORTED_MODULE_0__Button_vue___default.a)
-    installed = true
-  }
-});
-
-
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-const isString = (value) => {
-  return typeof value === 'string'
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = isString;
-
-
-const isBoolean = (value) => {
-  return typeof value === 'boolean'
-}
-/* unused harmony export isBoolean */
-
-
-const isObject = (value) => {
-  return typeof value === 'object'
-}
-/* harmony export (immutable) */ __webpack_exports__["e"] = isObject;
-
-
-const has = (object, key) => {
-  return isObject(object) && object.hasOwnProperty(key)
-}
-/* harmony export (immutable) */ __webpack_exports__["b"] = has;
-
-
-const get = (object, key, defaultValue) => {
-  return has(object, key) ? object[key] : defaultValue
-}
-/* harmony export (immutable) */ __webpack_exports__["f"] = get;
-
-
-const px = value => {
-  return `${value}px`
-}
-/* harmony export (immutable) */ __webpack_exports__["c"] = px;
-
-
-const translate = (x, y) => {
-  return `translate(${x}, ${y})`
-}
-/* harmony export (immutable) */ __webpack_exports__["d"] = translate;
 
 
 /***/ })
